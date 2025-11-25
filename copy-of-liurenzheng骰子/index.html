@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>liurenzheng骰子</title>
+    <meta name="description" content="一个具有3D动画和AI解读功能的现代骰子应用。">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎲</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Custom styles for 3D Dice that are hard to do purely with utility classes */
+      .scene {
+        perspective: 800px; /* Increased perspective for better 3D depth */
+      }
+      .cube {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        /* Updated transition: 2s duration to match React logic, smooth rolling ease */
+        transition: transform 2s cubic-bezier(0.1, 0.9, 0.2, 1); 
+        will-change: transform;
+      }
+      .cube__face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, #ffffff 0%, #f3f4f6 100%);
+        border: 1px solid #d1d5db;
+        border-radius: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05), 0 0 4px rgba(0,0,0,0.1);
+        backface-visibility: hidden; /* Helps performance */
+      }
+      /* Ensure dots look good */
+      .dot {
+        background: radial-gradient(circle at 30% 30%, #4b5563 0%, #1f2937 100%);
+        border-radius: 50%;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.8), 0 1px 1px rgba(255,255,255,0.5);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-slate-900 text-slate-100 antialiased overflow-hidden selection:bg-indigo-500 selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
